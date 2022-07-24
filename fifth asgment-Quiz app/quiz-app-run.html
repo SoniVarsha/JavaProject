@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" type="text/JavaScript"> </script>
+    <style>
+        #scoreBoard{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+  
+    <h1>The Quiz App</h1>
+
+ <form id='form' action="">
+  <button id="btn">Submit</button>
+ 
+  
+ </form >
+ 
+
+ <div id='scoreBoard'>
+    Score : <span id="score">0</span>/5
+ </div>
+
+    <script>
+
+var questions = []
+    let userAnswers = [-1, -1, -1, -1, -1]
+
+
+      function onInputHandler(e){
+         console.log('triggered')
+        console.log(e.target.id)
+        const inputArr = e.target.id.split('_') // 1_2   Question 1 and selected answer of index value 2(c selected)
+
+        const questionId = inputArr[0]
+
+        const optionIndex= inputArr[1]
+
+        const actualQuestionIndex = questionId-1
+
+        userAnswers[actualQuestionIndex] = optionIndex
+      }
+
+      var form = document.getElementById("form")
+      function renderQuestions(){
+      
+
+  console.log(questions[0])
+  var Mcq = questions
+  console.log(Mcq)
+       for(var counter=0; counter <= Mcq.length; counter++){
+       var currentQuestions= (Mcq[counter])
+     
+       const wrapperDiv = document.createElement('div')
+
+       const question=document.createElement('h3')
+      question.innerText = 'Q'+ (counter+1) + '.' + currentQuestions.question;
+
+     
+
+         for(let i=0; i<currentQuestions.options.length; i++ ){
+            const currentOptions= currentQuestions.options[i]
+       
+
+          let input =  document.createElement('input')
+          input.name = `q_${counter+1}`
+          input.id= currentQuestions.id +  "_" + (i)
+          input.required = 'true'
+            input.type = 'radio'
+          input.value= `${currentOptions }`
+
+          input.addEventListener('click',onInputHandler)
+
+
+          let label = document.createElement('label')
+          label.htmlFor= currentQuestions.id +  "_" + (i)
+          label.innerText = currentOptions
+       
+        
+          question.append(input,label)
+         }
+         wrapperDiv.appendChild(question)
+       form.appendChild(wrapperDiv)
+       }
+     
+  
+
+ 
+    }
+  
+  
+
+    //   let questions = []
+function onAjaxSuccess(data){
+  console.log(data);
+  questions = data;
+
+  renderQuestions()
+}
+
+function onAjaxFail(){
+    console.log('ajax failed')  
+//when ur url is wrong
+}
+
+$.ajax({
+  method : 'GET',
+  url:' https://5d76bf96515d1a0014085cf9.mockapi.io/quiz',
+  success: onAjaxSuccess,
+  error: onAjaxFail,
+})
+
+
+ form = document.getElementById("form")
+
+function onSubmitHandler(e){
+e.preventDefault();
+console.log('evebt triggered')
+console.log(userAnswers)
+let score = 0;
+for(let counter=0; counter < userAnswers.length;counter++){
+    var currentUserAnswer = userAnswers[counter]
+
+     console.log(currentUserAnswer)
+   
+
+    if(currentUserAnswer == questions[counter].answer-1){
+       score++
+    }
+}
+let scoreSpan= document.getElementById('score')
+scoreSpan.innerText = score
+}
+
+var submit = document.getElementById('btn')
+submit.addEventListener('click',onSubmitHandler)
+    </script>
+</body>
+</html>

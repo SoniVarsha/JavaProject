@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&family=M+PLUS+Rounded+1c:wght@100&family=Splash&display=swap');
+    *{
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+       color: white;
+    }
+      body{
+       background-color: rgb(20, 167, 167);
+      }
+
+
+       #heading{
+           font-family: 'Lobster', cursive;
+           letter-spacing: 3px;
+           color:#f1c40f;
+            text-align: center;
+       }
+       
+       #main {
+    margin: 0px 30%;
+     background: #0d3456;
+    padding: 20px 0px;
+
+}
+
+     .box{
+          width: 40%;
+          margin: 10px 5px;
+          background-color:#192a56; 
+          padding: 5%;
+               
+     }
+     #questions{
+         margin: 8px auto;
+         color:#f1c40f;
+     }
+
+     .row{
+         width: 100%;
+          margin: 4px;
+           margin-left: 0px;
+     }
+
+   
+   
+     #btn{
+       margin: 15px auto 2px auto;
+       padding: 10px;
+       background-color: #c2ad58;
+      color: #f17c0f;
+     font-weight: bold;
+     font-size: medium;
+     display: flex;
+     border-radius: 5px;
+     justify-content: center;
+     }
+
+     #score{
+        position: absolute;
+        right: 320px;
+        top: 40px;
+         /* width: 5%; */
+         /* height: 20%; */
+         /* padding: 12px  ; */
+
+             }
+h3{
+    color: #f17c0f;
+}
+ 
+</style>
+
+</head>
+<body>
+    <h1 id="heading"></h1>
+    <div id="main">
+
+
+ 
+         </div>  
+
+         <div id="score">
+            <h4>Score</h4>
+            <h2 id="marks"> </h2>
+         </div>
+     
+            <button id="btn">Submit</button>
+
+<script>
+var heading = document.getElementById("heading")
+      heading.innerHTML = 'The Quiz App'
+
+  
+
+var Mcq = []
+
+function onreadystatechangeHandler(e){
+ if(e.target.readyState === 4){
+       if(e.target.status === 200){
+        Mcq = JSON.parse(e.target.response)
+        renderQuestion()
+       }
+}
+}
+
+
+function renderQuestion(){
+    var main = document.getElementById('main')
+    for(var i=0; i<=Mcq.length; i++){
+        //  console.log(Mcq)
+     const currentMCQ = Mcq[i]
+    //  console.log(currentMCQ.question)
+let div = document.createElement('div')
+div.classList.add('Box')
+
+       div.innerHTML =  `  
+             <h3 id="questions"> Q${i+1}${currentMCQ.question}   </h3>
+            
+
+            <div class="row">
+             <input type="radio"  class="options" name="${Mcq[i].id}" id="option1" value='1' >
+            <label for="option1"> ${currentMCQ.options[0]} </label>
+         </div>
+         <div class="row">
+             <input class="options" type="radio" name="${Mcq[i].id}" id="option2"   value='2'  >
+            <label for="option2">${currentMCQ.options[1]}</label>
+         </div>
+         <div class="row">
+             <input class="options"  type="radio" name="${Mcq[i].id}" id="option3" value='3'>
+            <label for="option3">${currentMCQ.options[2]}</label>
+         </div>
+         <div class="row">
+             <input  class="options" type="radio" name=name="${Mcq[i].id}" id="option4"  value='4'>
+            <label for="option4">${currentMCQ.options[3]}</label>
+         </div>
+`     
+       main.append(div)
+
+   
+    }
+ }
+
+ 
+function vAjax(){
+var request = new XMLHttpRequest()
+request.open('GET','https://5d76bf96515d1a0014085cf9.mockapi.io/quiz')
+request.send()
+request.addEventListener('readystatechange',onreadystatechangeHandler)
+}
+vAjax()
+
+
+var btn = document.getElementById('btn')
+var correct = 0
+var total = 5
+
+
+
+// let allinput = document.querySelectorAll('.row .options')
+// let allinput = document.getElementsByClassName(".row")
+// console.log(allinput)
+function onsubmithandler(e){   
+    e.preventDefault();
+  
+    const ans = Mcq.map(data => data.answer)    // Got an array of answers
+
+let correctopt = 0;
+Mcq.forEach((currentque, index) => {           //index running 5 times bcz mydata length is 5
+
+    let input = document.querySelectorAll(`input[name='${currentque.id}']`)
+    console.log(input)
+
+    //   loop  to find input of 4 options 
+    for (let j = 0; j < input.length; j++) {
+        if (input[j].checked) {
+            if (input[j].value == ans[index]) {
+                correctopt++;
+            }
+        }
+    }
+
+});
+var h2 = document.getElementById('marks');
+
+h2.innerText = `${correctopt}/${total}`
+            }
+            
+btn.addEventListener('click', onsubmithandler)
+
+
+
+
+
+</script>'
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Lobster&family=M+PLUS+Rounded+1c:wght@100&family=Splash&display=swap');
+    *{
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+       color: white;
+    }
+      body{
+       background-color: rgb(20, 167, 167);
+      }
+
+
+       #heading{
+           font-family: 'Lobster', cursive;
+           letter-spacing: 3px;
+           color:#f1c40f;
+            text-align: center;
+            margin-top: 10%;
+       }
+       
+       #main{
+           width : 100% ;
+           height: 80vh;
+                  }
+
+     #box{
+          width: 40%;
+          margin: 10px auto;
+          background-color:#192a56; 
+          padding: 5%;
+               
+     }
+     #questions{
+         margin: 8px auto;
+         color:#f1c40f;
+     }
+
+     .row{
+         width: 100%;
+          margin: 4px;
+           margin-left: 0px;
+     }
+
+   
+   
+     .btn{
+       margin: 15px auto 2px auto;
+       padding: 10px;
+       background-color: #c2ad58;
+      color: #f17c0f;
+     font-weight: bold;
+     font-size: medium;
+     display: flex;
+     border-radius: 5px;
+     justify-content: center;
+     }
+     
+   </style>
+</head>
+<body>
+    <h1 id="heading"></h1>
+    <div id="main">
+       <div id="box">
+            <h3 id="questions">      </h3>
+           <div class="row">
+            <input type="radio"  class="options" name="option" id="option1"  value="a">
+           <label for="option1"></label>
+        </div>
+        <div class="row">
+            <input class="options" type="radio" name="option" id="option2"  value="b">
+           <label for="option2"></label>
+        </div>
+        <div class="row">
+            <input class="options"  type="radio" name="option" id="option3" value="c">
+           <label for="option3"></label>
+        </div>
+        <div class="row">
+            <input  class="options" type="radio" name="option" id="option4"  value="d">
+           <label for="option4"></label>
+        </div>
+      
+        
+    
+           <button class="btn" onclick="onSubmitHandler()">Submit</button>
+        
+
+          
+    </div>
+    </div>
+
+
+
+    <script>
+     var Mcq = [{"id":1,
+     "answer":'c',
+     "question":"Which was not one of Voldemort's Horcruxes?",
+     "options":["Harry","Nagini","Helga's Diadem","Tom Riddle's Diary"]},
+
+     {"id":2,"answer":'a',"question":"Which of these are not one of Hagrid's many pets?","options":["Grawp","Fluffy","Aragog","Noberta"]},
+
+     {"id":3,"answer":'c',"question":"Which class did Severus Snape always want to teach?","options":["Potions","Charms","Defense Against Dark Arts","Transfiguration"]},
+     
+     {"id":4,"answer":'c',"question":"Which Hogwarts house did Moaning Myrtle belong in?","options":["Gryffindor","Slytherin","Ravenclaw","Hufflepuff"]},
+     
+     {"id":5,"answer":'b',"question":"What class did Neville end up teaching at Hogwarts?","options":["Astronomy","Herbology","Charms","Muggle Studies"]}]
+
+      var heading = document.getElementById("heading")
+      heading.innerHTML = 'The Quiz App'
+   
+      var questions = document.getElementById("questions")
+      var chooseTheCOrrect = document.querySelectorAll('.options')
+       let index= 0
+       let total = Mcq.length
+        var correct = 0
+       function loadQuestion(){
+          if(index === total){
+           return endQuiz()
+          } 
+        reset()
+          
+         let data = Mcq[index]
+         questions.innerText =` ${data.question}`
+         chooseTheCOrrect[0].nextElementSibling.innerText = data.options[0]
+         chooseTheCOrrect[1].nextElementSibling.innerText = data.options[1]
+         chooseTheCOrrect[2].nextElementSibling.innerText = data.options[2]
+         chooseTheCOrrect[3].nextElementSibling.innerText = data.options[3]
+      
+       }
+     
+
+       var btn = document.getElementById('btn')
+       const onSubmitHandler =()=>{
+        
+     var ans= getAnswer()
+       if(ans === Mcq[index].answer){
+             correct++
+       }
+       index++;
+       loadQuestion()
+       return;
+       }
+
+    const getAnswer = () => {
+        let answer;
+        chooseTheCOrrect.forEach(
+        (input) => {
+     if(input.checked){
+        answer= input.value
+     }  
+        }
+        )
+    return answer;
+    }
+    
+     function reset(){
+        chooseTheCOrrect.forEach(
+        (input) => {
+     input.checked = false
+        }
+        )
+     }
+
+      function endQuiz(){
+        document.getElementById('box').innerHTML = `
+        <h3>Thanks for playing </h3>
+       <h2> ${correct}/${total} are correct</h2>     `
+      }
+
+
+       loadQuestion()
+
+
+     
+    </script>
+</body>
+</html>

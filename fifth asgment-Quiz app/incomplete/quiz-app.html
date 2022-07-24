@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&family=M+PLUS+Rounded+1c:wght@100&family=Splash&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        body {
+            background-color: rgb(20, 167, 167);
+        }
+
+
+        #heading {
+            font-family: 'Lobster', cursive;
+            letter-spacing: 3px;
+            color: #f1c40f;
+            text-align: center;
+        }
+
+        #main {
+            margin: 0px 30%;
+            display: flex;
+            background: #0d3456;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0px;
+        }
+
+        .box {
+            width: 40%;
+            margin: 10px auto;
+            background-color: #192a56;
+            padding: 5%;
+
+        }
+
+        #questions {
+            margin: 8px auto;
+            color: #f1c40f;
+        }
+
+        .row {
+            width: 100%;
+            margin: 4px;
+            margin-left: 0px;
+        }
+
+
+
+        #button{
+            margin: 15px auto 2px auto;
+            padding: 10px;
+            background-color: #c2ad58;
+            color: #f17c0f;
+            font-weight: bold;
+            font-size: medium;
+            display: flex;
+            border-radius: 5px;
+            justify-content: center;
+        }
+
+        #score {
+            position: absolute;
+            right: 320px;
+            top: 40px;
+            width: 5%;
+        
+            padding: 12px;
+            background-color: white;
+
+        }
+
+        h3, h2 {
+            color: black;
+        }
+    </style>
+
+    </head>
+
+    <body>
+       
+        <h1 id="heading"></h1>
+        <div id="main">
+
+
+
+        </div>
+
+        <div id="score">
+            <h3>Score</h3>
+            <h2> </h2>
+        </div>
+
+        <button id="button">Submit</button>
+   
+
+
+        <script>
+            var heading = document.getElementById("heading")
+            heading.innerHTML = 'The Quiz App'
+
+
+
+
+            var Mcq = []
+            function onreadystatechangeHandler(e) {
+                if (e.target.readyState === 4) {
+                    if (e.target.status === 200) {
+                        Mcq = JSON.parse(e.target.response)
+                        console.log(Mcq[0].question)
+                        renderQuestion()
+                    }
+                }
+            }
+
+
+            function renderQuestion() {
+                currentMCQ = Mcq
+                // console.log(currentMCQ)
+
+                // console.log(currentMCQ[0])
+
+                var main = document.getElementById('main')
+
+
+                //for question1
+                let div1 = document.createElement('div')
+                div1.classList.add('Box')
+
+                let question1Heading = document.createElement('h3')
+                question1Heading.innerText = Mcq[0].question
+                question1Heading.id = 'questions'
+
+                var input1 = document.createElement('div')
+                input1.innerHTML = `  
+                             <input type="radio"  class="options" name="option1" id="option1"  value="a">
+                            <label for="option1"> ${currentMCQ[0].options[0]} </label>
+                      <br>
+
+                             <input class="options" type="radio" name="option1" id="option2"  value="b">
+                            <label for="option2">${currentMCQ[0].options[1]}</label>
+                          <br>
+
+                             <input class="options"  type="radio" name="option1" id="option3" value="c">
+                            <label for="option3">${currentMCQ[0].options[2]}</label>
+                           <br>
+
+                             <input  class="options" type="radio" name="option1" id="option4"  value="d">
+                            <label for="option4">${currentMCQ[0].options[3]}</label>
+                          <br>
+                    `
+                question1Heading.append(input1)
+                div1.append(question1Heading)
+
+                //question1 ends
+                //question 2
+
+                let div2 = document.createElement('div')
+                div2.classList.add('Box')
+
+                let question2Heading = document.createElement('h3')
+                question2Heading.innerText = Mcq[1].question
+                question2Heading.id = 'questions'
+
+                var input2 = document.createElement('div')
+                input2.innerHTML = `  
+                             <input type="radio"  class="options" name="option2" id="option1"  value="a">
+                            <label for="option1"> ${currentMCQ[1].options[0]} </label>
+                      <br>
+
+                             <input class="options" type="radio" name="option2" id="option2"  value="b">
+                            <label for="option2">${currentMCQ[1].options[1]}</label>
+                          <br>
+
+                             <input class="options"  type="radio" name="option2" id="option3" value="c">
+                            <label for="option3">${currentMCQ[1].options[2]}</label>
+                           <br>
+
+                             <input  class="options" type="radio" name="option2" id="option4"  value="d">
+                            <label for="option4">${currentMCQ[1].options[3]}</label>
+                          <br>
+                    `
+                question2Heading.append(input2)
+                div2.append(question2Heading)
+                //question2  ends
+                //for question3
+                let div3 = document.createElement('div')
+                div3.classList.add('Box')
+
+                let question3Heading = document.createElement('h3')
+                question3Heading.innerText = Mcq[2].question
+                question3Heading.id = 'questions'
+
+                var input3 = document.createElement('div')
+                input3.innerHTML = `  
+                             <input type="radio"  class="options" name="option3" id="option1"  value="a">
+                            <label for="option1"> ${currentMCQ[2].options[0]} </label>
+                      <br>
+
+                             <input class="options" type="radio" name="option3" id="option2"  value="b">
+                            <label for="option2">${currentMCQ[2].options[1]}</label>
+                          <br>
+
+                             <input class="options"  type="radio" name="option3" id="option3" value="c">
+                            <label for="option3">${currentMCQ[2].options[2]}</label>
+                           <br>
+
+                             <input  class="options" type="radio" name="option3" id="option4"  value="d">
+                            <label for="option4">${currentMCQ[2].options[3]}</label>
+                          <br>
+                    `
+                question3Heading.append(input3)
+                div3.append(question3Heading)
+
+                //question3 ends
+                //for question4
+                let div4 = document.createElement('div')
+                div4.classList.add('Box')
+
+                let question4Heading = document.createElement('h3')
+                question4Heading.innerText = Mcq[3].question
+                question4Heading.id = 'questions'
+
+                var input4 = document.createElement('div')
+                input4.innerHTML = `  
+                             <input type="radio"  class="options" name="option4" id="option1"  value="a">
+                            <label for="option1"> ${currentMCQ[3].options[0]} </label>
+                      <br>
+
+                             <input class="options" type="radio" name="option4" id="option2"  value="b">
+                            <label for="option2">${currentMCQ[3].options[1]}</label>
+                          <br>
+
+                             <input class="options"  type="radio" name="option4" id="option3" value="c">
+                            <label for="option3">${currentMCQ[3].options[2]}</label>
+                           <br>
+
+                             <input  class="options" type="radio" name="option4" id="option4"  value="d">
+                            <label for="option4">${currentMCQ[3].options[3]}</label>
+                          <br>
+                    `
+                question4Heading.append(input4)
+                div4.append(question4Heading)
+
+                //question4 ends
+                //for question5
+                let div5 = document.createElement('div')
+                div5.classList.add('Box')
+
+                let question5Heading = document.createElement('h3')
+                question5Heading.innerText = Mcq[4].question
+                question5Heading.id = 'questions'
+
+                var input5 = document.createElement('div')
+                input5.innerHTML = `  
+                             <input type="radio"  class="options" name="option5" id="option1"  value="a">
+                            <label for="option1"> ${currentMCQ[3].options[0]} </label>
+                      <br>
+
+                             <input class="options" type="radio" name="option5" id="option2"  value="b">
+                            <label for="option2">${currentMCQ[3].options[1]}</label>
+                          <br>
+
+                             <input class="options"  type="radio" name="option5" id="option3" value="c">
+                            <label for="option3">${currentMCQ[3].options[2]}</label>
+                           <br>
+
+                             <input  class="options" type="radio" name="option5" id="option4"  value="d">
+                            <label for="option4">${currentMCQ[3].options[3]}</label>
+                          <br>
+                    `
+             
+                question5Heading.append(input5)
+                div5.append(question5Heading)
+
+                //question4 ends
+
+
+                main.append(div1, div2, div3, div4, div5)
+
+            }
+
+
+
+
+            function vAjax() {
+                var request = new XMLHttpRequest()
+                request.open('GET', 'https://5d76bf96515d1a0014085cf9.mockapi.io/quiz')
+                request.send()
+                request.addEventListener('readystatechange', onreadystatechangeHandler)
+            }
+            vAjax()
+
+
+            
+            var btn = document.getElementById('button')
+            var correct = 0
+         
+           
+            function onsubmitHandler(e) {
+         e.preventDefault();
+         
+            }
+     
+            
+            
+            btn.addEventListener('click',onsubmitHandler)
+
+
+            var h2 = document.getElementsByTagName('h2')
+            h2.innerText = 'correct / 5'
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    #product {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .left-column {
+      width: 40%;
+    }
+
+    .left-column img {
+      width: 100%;
+      margin-top: 50px;
+    }
+
+    .right-column {
+      width: 60%;
+      margin-top: 40px;
+      padding-left: 30px;
+    }
+
+    .product-description {
+      margin-bottom: 40px;
+    }
+
+    .product-description h1 {
+      font-weight: 300;
+      font-size: 44px;
+      letter-spacing: -2px;
+    }
+
+    .product-description h4 {
+      margin-top: 20px;
+      font-weight: 200;
+      font-size: 20px;
+      letter-spacing: 1px;
+      color: rgb(27, 25, 25);
+    }
+
+    .product-description h3 {
+      margin-top: 20px;
+      font-weight: 200;
+      font-size: 20px;
+      letter-spacing: 1px;
+      color: rgb(27, 25, 25);
+    }
+
+    .product-description h3 span {
+      color: #009688;
+      font-weight: bold;
+    }
+
+    .product-description p {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 300;
+      color: #86939e;
+    }
+
+    .product-preview .previewImg {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: left;
+      margin-top: 20px;
+    }
+
+    .product-preview .previewImg img {
+      margin: 5px;
+      width: 15%;
+      height: 30%;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .btn button {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    padding: 10px 20px;
+    letter-spacing: 2px;
+    background-color: #009688;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 50%);
+}
+
+.btn button:hover{
+    box-shadow: 0px 4px 12px rgb(0 0 0 / 50%);
+    box-shadow: -0 4px 12px rgb(0 0 0 / 50%);
+}
+
+.currentborder{
+    border: 2px solid #009688;
+    border-radius:7px;
+}
+
+/* @media screen and (max-width: 768px){
+.right-column{
+    width: 100%;
+    margin-top: 30px;
+    padding-left: 30px;
+}
+.left-column{
+    width: 100%;
+    margin-top: 50px;
+    padding-left: 30px;
+}
+}
+
+@media screen and (max-width: 500px){
+    .name{
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    .previewimg img{
+    margin-right: 0px;
+    }
+} */
+  </style>
+</head>
+
+<body>
+  <section id="product">
+
+
+
+  </section>
+
+
+<script>
+        
+        var section = document.getElementById('product')
+
+var leftColumn = document.createElement('div')
+leftColumn.classList.add('left-column');
+
+var image = document.createElement('img')
+image.src = 'https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/08a7b230-ee8f-46c0-a945-4e835a3c01c01541402833619-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-1.jpg'
+image.classList.add('productImg');
+leftColumn.appendChild(image)
+
+
+var rightColumn = document.createElement('div')
+rightColumn.classList.add('right-column');
+
+
+var productDescription = document.createElement('div')
+productDescription.classList.add('product-description');
+
+var h1 = document.createElement('h1')
+h1.id = "name"
+h1.innerText = 'Men Navy Blue Solid Sweatshirt'
+
+var h4 = document.createElement('h4')
+h4.id = "brand"
+h4.innerText = 'United Colors of Benetton'
+
+var h3 = document.createElement('h3')
+var span = document.createElement('span')
+span.id = 'price'
+span.innerText = '2599'
+h3.innerText = 'Price: Rs'
+h3.appendChild(span)
+
+var description = document.createElement('div')
+description.classList.add('description');
+var h3a = document.createElement('h3')
+h3a.innerText = 'Description'
+var p = document.createElement('p')
+p.id = 'description'
+p.innerText = 'Navy solid sweatshirt with patchwork, has a round neck, long sleeves, straight hem'
+
+description.append(h3a, p)
+
+var productPreview = document.createElement('div')
+productPreview.classList.add('product-preview');
+
+var h3 = document.createElement('h3')
+h3.innerText = 'Product Preview'
+
+var previewImg = document.createElement('div')
+previewImg.classList.add('previewImg');
+
+var img0 = document.createElement('img')
+img0.classList.add('active')
+img0.id = 'img0'
+img0.src = "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/08a7b230-ee8f-46c0-a945-4e835a3c01c01541402833619-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-1.jpg"
+
+var img1 = document.createElement('img')
+img1.id = 'img1'
+img1.src = "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/efc3d5b9-1bb3-4427-af53-7acae7af98951541402833591-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-2.jpg"
+
+var img2 = document.createElement('img')
+img2.id = 'img2'
+img2.src = "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/c7e58861-3431-4189-9903-9880f5eebd181541402833566-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-3.jpg"
+
+var img3 = document.createElement('img')
+img3.id = 'img3'
+img3.src = "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/66490b64-32de-44b4-a6e4-fe36f1c040051541402833548-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-4.jpg"
+
+var img4 = document.createElement('img')
+img4.id = 'img4'
+img4.src = "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/957be784-7c5d-4e90-ab9f-0928015b22891541402833645-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-5.jpg"
+
+var img5 = document.createElement('img')
+img5.id = 'img5'
+img5.src = "undefined"
+
+previewImg.append(img0, img1, img2,img3, img4, img5)
+productPreview.append(h3, previewImg)
+
+var div = document.createElement('div')
+var button = document.createElement('button')
+div.classList.add('btn');
+button.innerText = 'Add To Cart'
+button.id= 'add-to-cart'
+div.append(button)
+
+productDescription.append(h1, h4, h3, description, productPreview,div)
+rightColumn.appendChild(productDescription)
+section.append(leftColumn, rightColumn)
+
+
+var previewimg = document.querySelector(".previewImg")
+
+function onclickhandler(e) {
+if(e.target.nodeName ==='IMG'){
+currentsrc = e.target.src;
+document.querySelector(".left-column img").src = currentsrc;
+var allpreviewimg = previewimg.children
+for (var i = 0; i < allpreviewimg.length; i++) {
+    allpreviewimg[i].classList.remove('currentborder');
+}
+e.target.classList.add('currentborder')
+}
+}
+previewimg.addEventListener('click', onclickhandler)
+
+
+
+</script>
+
+</body>
+
+</html>
